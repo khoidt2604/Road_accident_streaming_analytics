@@ -146,7 +146,7 @@ Main concepts used include:
 - `Assignment-2B-Task1_producer_mngo0011.ipynb` — Kafka producer notebook for simulating accident sensor data
 - `Assignment-2B-Task2_spark_streaming_mngo0011.ipynb` — PySpark Structured Streaming notebook for prediction and aggregation
 - `Assignment-2B-Task3_consumer_mngo0011.ipynb` — Kafka consumer notebook for visualisation and dashboard creation
-- `Screenshot 2026-07-17 at 11.53.27 pm.png` — dashboard visualisation
+- Dashboard visualisation
 - supporting road accident data files — streaming collision data, static reference files, and saved model assets
 - `README.md` — project summary and usage instructions
 
