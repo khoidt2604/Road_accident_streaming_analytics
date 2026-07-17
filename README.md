@@ -8,7 +8,7 @@ This repository contains my real-time streaming analytics project for road accid
 
 This project focuses on building an end-to-end streaming pipeline for road accident monitoring.
 
-The workflow is divided into three main parts. First, a **Kafka producer** simulates real-time accident sensor data by sending batches of records to a Kafka topic. Next, **PySpark Structured Streaming** consumes the stream, applies transformations and a saved machine learning pipeline model, and performs real-time aggregations. Finally, a **Kafka consumer** collects the streaming outputs and builds a dashboard to visualise severity patterns and district-level accident trends. :contentReference[oaicite:1]{index=1}
+The workflow is divided into three main parts. First, a **Kafka producer** simulates real-time accident sensor data by sending batches of records to a Kafka topic. Next, **PySpark Structured Streaming** consumes the stream, applies transformations and a saved machine learning pipeline model, and performs real-time aggregations. Finally, a **Kafka consumer** collects the streaming outputs and builds a dashboard to visualise severity patterns and district-level accident trends. 
 
 This project demonstrates practical skills in:
 
@@ -36,16 +36,16 @@ The goal of this project is to show how **Kafka** and **PySpark Structured Strea
 This project is divided into three connected stages:
 
 ### 1. Kafka Producer
-The producer simulates accident sensors by loading **50–100 accident records every second** in chronological order, adding a current timestamp field (`accident_ts`), and sending the batch to the Kafka topic `accident_stream`. Spark is intentionally not used in this section because the producer simulates lightweight sensor-side streaming. :contentReference[oaicite:2]{index=2}
+The producer simulates accident sensors by loading **50–100 accident records every second** in chronological order, adding a current timestamp field (`accident_ts`), and sending the batch to the Kafka topic `accident_stream`. Spark is intentionally not used in this section because the producer simulates lightweight sensor-side streaming.
 
 ### 2. Spark Structured Streaming
-The streaming notebook creates a **SparkSession** with four cores, sets the **UK/London timezone**, defines schemas for the incoming and static datasets, ingests the Kafka stream, converts records to the correct data types, applies a **30-second watermark**, reuses transformations from the earlier modelling task, loads the saved pipeline model, and performs real-time predictions plus required streaming aggregations. :contentReference[oaicite:3]{index=3}
+The streaming notebook creates a **SparkSession** with four cores, sets the **UK/London timezone**, defines schemas for the incoming and static datasets, ingests the Kafka stream, converts records to the correct data types, applies a **30-second watermark**, reuses transformations from the earlier modelling task, loads the saved pipeline model, and performs real-time predictions plus required streaming aggregations. 
 
 ### 3. Kafka Consumer and Dashboard
 The consumer notebook reads the streaming outputs published from Spark, converts the records into pandas DataFrames, and creates a dashboard with:
 - a plot of high-severity accidents over time
 - a cumulative distribution of accidents by predicted severity
-- a bubble map of accidents by local district :contentReference[oaicite:4]{index=4}
+- a bubble map of accidents by local district 
 
 ---
 
@@ -60,7 +60,7 @@ Before prediction, the streaming application performs several important preparat
 - converts columns into appropriate numerical and timestamp types
 - applies a **30-second watermark** on the event-time column
 - joins streaming records with static vehicle and casualty features
-- transforms the stream into the same feature structure used by the saved machine learning pipeline model :contentReference[oaicite:5]{index=5}
+- transforms the stream into the same feature structure used by the saved machine learning pipeline model 
 
 These steps ensure that the streaming records are ready for prediction and aggregation in a consistent format.
 
@@ -77,7 +77,7 @@ The application predicts severity and prints accidents with **predicted severity
 The stream is grouped by predicted severity and the total number of accidents is printed every 10 seconds.
 
 ### 3. District-level severity counts every 30 seconds
-For each local district with data, the total number of accidents along with low-, medium-, and high-severity counts is printed every 30 seconds. :contentReference[oaicite:6]{index=6}
+For each local district with data, the total number of accidents along with low-, medium-, and high-severity counts is printed every 30 seconds. 
 
 These aggregations provide both fine-grained and summary-level monitoring views of the live stream.
 
@@ -92,13 +92,13 @@ These aggregations provide both fine-grained and summary-level monitoring views 
 The consumer notebook builds a dashboard with three matplotlib plots:
 
 ### A. High-severity accidents over time
-This bar chart shows the number of high-severity accidents in each time window. In the displayed run, most windows contain zero high-severity accidents, while one time window contains a single high-severity event. :contentReference[oaicite:7]{index=7}
+This bar chart shows the number of high-severity accidents in each time window. In the displayed run, most windows contain zero high-severity accidents, while one time window contains a single high-severity event. 
 
 ### B. Cumulative distribution of accidents by severity
-This plot combines accident counts by predicted severity with a cumulative percentage line. The dashboard output shows that most accidents were predicted at severity levels **3** and **4**, while severity level **4** had the highest total count. The cumulative curve shows that severity levels **2 to 4** account for nearly all streamed accidents. :contentReference[oaicite:8]{index=8}
+This plot combines accident counts by predicted severity with a cumulative percentage line. The dashboard output shows that most accidents were predicted at severity levels **3** and **4**, while severity level **4** had the highest total count. The cumulative curve shows that severity levels **2 to 4** account for nearly all streamed accidents. 
 
 ### C. Bubble map of accidents by local district
-The bubble map combines district-level accident totals with representative latitude and longitude coordinates derived from the original collision file. Bubble size reflects accident volume, helping highlight districts with more streamed accident activity. :contentReference[oaicite:9]{index=9}
+The bubble map combines district-level accident totals with representative latitude and longitude coordinates derived from the original collision file. Bubble size reflects accident volume, helping highlight districts with more streamed accident activity. 
 
 ---
 
@@ -137,7 +137,7 @@ Main concepts used include:
 - Loaded a saved machine learning pipeline model for live severity prediction
 - Published streaming summary outputs to Kafka topics
 - Consumed the streaming results into pandas DataFrames
-- Built a 3-plot dashboard for time-series, distribution, and district-level views :contentReference[oaicite:10]{index=10}
+- Built a 3-plot dashboard for time-series, distribution, and district-level views 
 
 ---
 
